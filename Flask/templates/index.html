@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Traffic Volume Estimation</title>
+  <style>
+    body {
+      background-image: url("https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+      background-size: cover;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .Login {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="Login">
+    <h1>Traffic Volume Estimation</h1>
+    <form action="{{ url_for('predict')}}" method="post">
+      <h2>Please enter the following details</h2>
+
+      <div class="form-group">
+        <label for="holiday">holiday:</label>
+        <select id="holiday" name="holiday">
+          <option value="7">None</option>
+          <option value="1">Columbus Day</option>
+          <option value="10">Veterans Day</option>
+          <option value="9">Thanksgiving Day</option>
+          <option value="0">Christmas Day</option>
+          <option value="6">New Years Day</option>
+          <option value="11">Washingtons Birthday</option>
+          <option value="5">Memorial Day</option>
+          <option value="2">Independence Day</option>
+          <option value="8">State Fair</option>
+          <option value="3">Labour Day</option>
+          <option value="4">Martin Luther King Jr Day</option><!-- Add more holiday options here -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="temp">temp:</label>
+        <input type="number" name="temp" placeholder="temp" required="required" />
+      </div>
+
+      <div class="form-group">
+        <label for="rain">rain:</label>
+        <input type="number" name="rain" placeholder="rain" required="required" />
+      </div>
+
+      <div class="form-group">
+        <label for="snow">snow:</label>
+        <input type="number" name="snow" placeholder="snow" required="required" />
+      </div>
+
+      <div class="form-group">
+        <label for="weather">weather:</label>
+        <select id="weather" name="weather">
+          <option value="1">Clouds</option>
+          <option value="0">Clear</option>
+          <option value="6">Rain</option>
+          <option value="2">Drizzle</option>
+          <option value="5">Mist</option>
+          <option value="4">Haze</option>
+          <option value="3">Fog</option>
+          <option value="1">Thunderstorm</option>
+          <option value="8">Snow</option>
+          <option value="9">Squad11</option>
+          <option value="7">Smoke</option><!-- Add more weather options here -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="year">year:</label>
+        <input type="number" min="2012" max="2022" name="year" placeholder="year" required="required" />
+      </div>
+
+      <div class="form-group">
+        <label for="month">month:</label>
+        <input type="number" min="1" max="12" name="month" placeholder="month" required="required" />
+      </div>
+
+      <div class="form-group">
+        <label for="day">day:</label>
+        <input type="number" min="1" max="31" name="day" placeholder="day" required="required" />
+      </div>
+
+      <div class="form-group">
+        <label for="hours">hours:</label>
+        <input type="number" min="1" max="24" name="hours" placeholder="hours" required="required" />
+      </div>
+
+      <div class="form-group">
+        <label for="minutes">minutes:</label>
+        <input type="number" min="0" max="60" name="minutes" placeholder="minutes" required="required" />
+      </div>
+
+      <div class="form-group">
+        <label for="seconds">seconds:</label>
+        <input type="number" min="0" max="60" name="seconds" placeholder="seconds" required="required" />
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="height:30px; width:200px">
+          Predict
+        </button>
+      </div>
+    </form>
+
+    <!-- Section to display predicted traffic volume -->
+    <div class="form-group">
+      <label for="prediction">Predicted Traffic Volume:</label>
+      <p>{{ prediction_text }}</p>
+    </div>
+  </div>
+</body>
+</html>
